@@ -5,7 +5,11 @@ This project fetches songs from this API, https://www.mocky.io/v2/5df79b1f320000
 It also allows users to filter the feed using their search inputs. 
 
 UI -> Jetpack compose
+
 HTTP -> Retrofit
+
 Serialization/Deserialization -> Moshi
+
 Threading -> Coroutines
+
 Dependency Injection -> Hilt
