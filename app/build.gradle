@@ -1,0 +1,108 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    namespace 'com.nezspencer.musicfeed'
+    compileSdk 32
+
+    defaultConfig {
+        applicationId "com.nezspencer.musicfeed"
+        minSdk 23
+        targetSdk 32
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+        buildConfigField("String", "BASE_URL", "\"https://www.mocky.io/\"")
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.1.1'
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+}
+
+dependencies {
+    def accompanistVersion = "0.24.8-beta"
+    def retrofit_version = "2.9.0"
+    def okHttpVersion = "4.9.0"
+    def moshi_version = "1.12.0"
+
+    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0'
+
+    //compose
+    implementation 'androidx.activity:activity-compose:1.5.0'
+    implementation "androidx.compose.ui:ui:$compose_ui_version"
+    implementation "androidx.compose.ui:ui-tooling-preview:$compose_ui_version"
+    implementation 'androidx.compose.material:material:1.1.1'
+    debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
+    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.5.0'
+
+    // Integration with observables
+    implementation "androidx.compose.runtime:runtime-livedata:$compose_ui_version"
+    implementation "androidx.compose.runtime:runtime-rxjava2:$compose_ui_version"
+
+    implementation "com.google.accompanist:accompanist-pager:$accompanistVersion"
+    implementation "com.google.accompanist:accompanist-insets:$accompanistVersion"
+    implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanistVersion"
+
+    implementation "androidx.constraintlayout:constraintlayout-compose:1.0.1"
+
+    //http -Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
+    implementation "com.squareup.okhttp3:okhttp:$okHttpVersion"
+
+    implementation "com.github.haroldadmin:NetworkResponseAdapter:4.0.1"
+
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
+
+    // coil compose image loader
+    implementation("io.coil-kt:coil-compose:2.1.0")
+
+    //paging
+    implementation 'androidx.paging:paging-compose:1.0.0-alpha15'
+
+    //hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+    kapt 'androidx.hilt:hilt-compiler:1.0.0'
+
+    // tests
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_ui_version"
+}
