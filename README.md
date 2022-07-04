@@ -13,3 +13,8 @@ Serialization/Deserialization -> Moshi
 Threading -> Coroutines
 
 Dependency Injection -> Hilt
+
+
+## Build instructions
+
+No Custom Build setp to follow. Just clone and build
